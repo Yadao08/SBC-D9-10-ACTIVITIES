@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="demo">
+        <h1>PERSONAL INFO</h1>
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name">
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name">
+        <label for="birthdate">Birthdate:</label>
+        <input type="date" id="birthdate">
+        <button type="button" onclick="displayInfo()">Display</button>
+    </div>
+
+    <script>
+    function calculateAge(birthdate) {
+        var today = new Date();
+        var birthDate = new Date(birthdate);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
+    }
+
+    function displayInfo() {
+        var firstName = document.getElementById("first-name").value;
+        var lastName = document.getElementById("last-name").value;
+        var birthdate = document.getElementById("birthdate").value;
+        var age = calculateAge(birthdate);
+
+        if (firstName && lastName && birthdate) {
+            document.getElementById("demo").innerHTML = "Full Name: " + firstName + " " + lastName + "<br>Age: " + age;
+        } else {
+            document.getElementById("demo").innerHTML = "Please enter your first name, last name, and birthdate.";
+        }
+    }
+    </script>
+
+</body>
+</html>
